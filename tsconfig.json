@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+      "target": "es2020",
+      "module": "commonjs",
+      "strict": true,
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+      "outDir": "./dist",                                      /* Enable all strict type-checking options. */
+      "noImplicitAny": true,                            /* Enable error reporting for expressions and declarations with an implied 'any' type. */
+      "strictNullChecks": true,                         /* When type checking, take into account 'null' and 'undefined'. */
+      "strictFunctionTypes": true,  
+      "noUnusedLocals": true,                           /* Enable error reporting when local variables aren't read. */
+      "noUnusedParameters": true,   
+    },
+    "include": ["src/**/*.ts"],
+    "exclude": ["node_modules"]
+}
