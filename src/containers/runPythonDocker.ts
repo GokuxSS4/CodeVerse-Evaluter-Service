@@ -31,15 +31,14 @@ export default async function runPythonDocker(code:string,inputTestCase:string){
     })
 
 
-    await new Promise<void> ((resolve)=>{
+    const outputLogs = await new Promise((resolve)=>{
         loggerStream.on('end',()=>{
             const completeBuffer = Buffer.concat(rowLogBuffer);
             const decodedLog = decodeBuffer(completeBuffer);
-            console.log(decodedLog);
-            resolve();
+            resolve(decodedLog);
         });
     })
 
     await pythonContainer.remove();
-    // return pythonContainer;
+    return outputLogs;
 }

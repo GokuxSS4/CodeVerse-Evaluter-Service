@@ -5,3 +5,5 @@ export const PYTHON_IMAGE = 'python:3.8-slim';
 // Header contains the type of data like stdout or stderr (4 bytes) and length of the data (4 bytes)
 export const DOCKER_STREAM_HEADER_SIZE = 8;
 
+export const SUBMISSION_QUEUE_NAME = 'SubmissionQueue';
+
