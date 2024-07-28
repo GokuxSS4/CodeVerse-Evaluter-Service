@@ -14,17 +14,21 @@ export default class SubmissionJob implements IJob {
         this.name = this.constructor.name;
     }
 
-    handle = async (job?: Job) => {
-        console.log("Handler of the job called");
+    handle = async (_job?: Job) => {
+        console.log("Handler of the submit job called");
         console.log(this.payload);
-        if(job) {
+        // if(job) {
             const key = Object.keys(this.payload)[0];
             const codeLanguage = this.payload[key].language;
             const code = this.payload[key].code;
+            // TODO: handle multiple test cases
             const inputTestCase = this.payload[key].inputCases;
+            const outputTestCase = this.payload[key].outputCases;
             const strategy = createExecutor(codeLanguage);
+
+            console.log("Stategu,language",strategy,codeLanguage);
             if(strategy != null) {
-                const response : ExecutionResponse = await strategy.execute(code, inputTestCase);
+                const response : ExecutionResponse = await strategy.execute(code, inputTestCase,outputTestCase);
                 if(response.status === "COMPLETED") {
                     console.log("Code executed successfully");
                     console.log(response);
@@ -32,7 +36,7 @@ export default class SubmissionJob implements IJob {
                     console.log("Something went wrong with code execution");
                     console.log(response);
                 }
-            }
+            // }
         }
     };
 

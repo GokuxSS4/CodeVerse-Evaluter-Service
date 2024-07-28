@@ -5,10 +5,11 @@ import decodeBuffer from "./dockerHelper";
 import CodeExecutorStrategy, { ExecutionResponse } from './../types/codeExecutorStatagy';
 
 export default class PythonExecutor implements CodeExecutorStrategy{
-    async execute(code: string, inputTestCase: string) : Promise<ExecutionResponse>{
+    async execute(code: string, inputTestCase: string,outputTestCase:string) : Promise<ExecutionResponse>{
         const rowLogBuffer: Buffer[] = [];
 
         console.log("Start to create container");
+        console.log(code, inputTestCase, outputTestCase);
         const runCommand = `echo '${code.replace(/'/g, `'\\"`)}' > test.py && echo '${inputTestCase.replace(/'/g, `'\\"`)}' | python3 test.py`;
         const pythonContainer = await createDockerContainer(PYTHON_IMAGE, [
             '/bin/sh', 

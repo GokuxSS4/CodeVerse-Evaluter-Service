@@ -7,8 +7,10 @@ import decodeBuffer from "./dockerHelper";
 
 
 export default class JavaExecutor implements CodeExecutorStrategy{
-    async execute(code: string, inputTestCase: string) : Promise<ExecutionResponse>{
+    async execute(code: string, inputTestCase: string,outputTestCase:string) : Promise<ExecutionResponse>{
         const rawLogBuffer: Buffer[] = [];
+
+        console.log(code, inputTestCase, outputTestCase);
 
         await pullImage(JAVA_IMAGE);
     
